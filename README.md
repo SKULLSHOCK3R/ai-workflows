@@ -74,6 +74,6 @@ MIT, see [LICENSE](LICENSE). Created by SKULLSHOCK3R. Not affiliated with or end
 
 - **SKULLSHOCK3R** (Akshith 'Robin' Naidu): author and maintainer.
 - **J.A.R.V.I.S.** (Claude, by Anthropic, in Claude Code): drafted, built and reviewed much of this kit with the author.
-- **E.V.** (ChatGPT, by OpenAI, in Codex): reviewed the Codex half of the kit and contributed the generic workflow and persona wording.
+- **E.V.** (ChatGPT, by OpenAI, in Codex): advised on the Codex half of the kit and contributed generic workflow and persona wording.
 
 The AI contributors are tools the author used; their makers have not reviewed or endorsed this project.
