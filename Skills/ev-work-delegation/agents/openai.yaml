@@ -1,0 +1,4 @@
+interface:
+  display_name: "E.V. Work Delegation"
+  short_description: "Route tasks across planning, production and review stages"
+  default_prompt: "Use $ev-work-delegation to route this task and review the final result."

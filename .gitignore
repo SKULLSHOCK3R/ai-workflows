@@ -1,0 +1,29 @@
+# Secrets and local overrides
+.env
+.env.*
+settings.local.json
+config*.json
+*.pem
+*.key
+
+# Local state and scratch
+state/
+tmp/*
+!tmp/README.md
+backups/*
+!backups/README.md
+inputs/*
+!inputs/README.md
+archive/*
+!archive/README.md
+outputs/*
+!outputs/README.md
+
+# Workflow ledger (copy file-workflow-state.example.json to start one)
+file-workflow-state.json
+
+# Python and OS noise
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

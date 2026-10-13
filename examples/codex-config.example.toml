@@ -1,0 +1,33 @@
+# Example Codex profiles for the E.V. stage roles. Illustrative only.
+#
+# Copy the parts you want into your own Codex configuration file after checking the current
+# Codex documentation for your version: key names, profile support and available models
+# differ between versions and accounts. This file is not read by anything in this kit.
+#
+# The mapping mirrors Skills/ev-work-delegation/SKILL.md ("one workspace example as of
+# 2026-10-13"). It is not a universal best choice. Replace the model names and effort levels
+# with ones your account and host actually support.
+
+[profiles.planner]            # strategy, planning, consequential decisions
+model = "gpt-6-astra"
+model_reasoning_effort = "medium"
+
+[profiles.reviewer]           # independent final review (always a fresh session)
+model = "gpt-6-astra"
+model_reasoning_effort = "medium"
+
+[profiles.researcher]         # research and financial reasoning
+model = "gpt-6-astra"
+model_reasoning_effort = "high"
+
+[profiles.producer]           # general writing, business work, analysis
+model = "gpt-6-sol"
+model_reasoning_effort = "medium"
+
+[profiles.routine]            # classification, extraction, templated work
+model = "gpt-6-luna"
+model_reasoning_effort = "high"
+
+# Example use: start a fresh session per stage, for instance
+#   codex --profile planner
+#   codex --profile reviewer

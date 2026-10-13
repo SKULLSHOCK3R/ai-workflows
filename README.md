@@ -1,0 +1,69 @@
+# AI Workflows
+
+A starter kit for running two AI coding assistants from one shared rulebook: **J.A.R.V.I.S.** on Claude Code and **E.V.** on Codex. Both read the same project instructions, lessons and tool conventions, each has its own conversational persona and its own optional delegation policy, and neither touches the other's files. The multi-stage workflow (fresh planning, production and independent review stages) is optional and proportional: simple questions stay simple.
+
+Created by SKULLSHOCK3R (Akshith 'Robin' Naidu). More at https://skullshock3r.github.io/.
+
+Released under the MIT License (see [LICENSE](LICENSE)).
+
+> Not affiliated with or endorsed by Marvel, Disney, Sony, Anthropic or OpenAI; character names are used only as nicknames. You can rename both assistants (see below).
+
+## Who it is for
+
+People who already use Claude Code and/or Codex with their own logins and want a consistent, auditable way to work: one rulebook, durable lessons, approval rules for external, paid and irreversible actions, and a repeatable review habit. Nothing here calls an API or needs a key; the kit is Markdown, a few PowerShell helper scripts, and example configuration.
+
+## What is in the kit
+
+| Path | Purpose |
+| --- | --- |
+| `AGENTS.md`, `CLAUDE.md` | The shared rulebook. `AGENTS.md` is canonical; `CLAUDE.md` is a byte-identical copy that Claude Code reads. |
+| `lessons.md`, `lessons/` | General lessons plus a template for area-specific lesson files. |
+| `Tool Conventions.md`, `Project Startup.md`, `File Workflow.md` | Tool rules, the resource index, and an optional intake/approval/archive workflow. |
+| `JARVIS Paraphrasing Rules.md`, `EV Paraphrasing Rules.md` | Conversational personas (chat only, never deliverables). |
+| `.claude/` | Six `jarvis-*` stage subagents, the Claude delegation skill, and `settings.example.json` (two hooks). |
+| `Skills/ev-work-delegation/` | The Codex delegation skill and its `agents/openai.yaml` metadata. |
+| `examples/codex-config.example.toml` | Example Codex profiles for the stage roles. |
+| `scripts/` | Read-only startup check, per-reply persona card, and an AGENTS.md/CLAUDE.md sync check. |
+| `inputs/`, `outputs/`, `tmp/`, `backups/`, `archive/` | Working folders, ignored by Git except for their README files. |
+| `EXCLUDED.md`, `SECURITY.md`, `CHANGELOG.md` | What was left out, how to report problems, and release notes. |
+
+## Setup for Claude Code
+
+1. Copy this folder (or its contents) into your project root and open that folder in Claude Code. `CLAUDE.md` imports the core rule files with `@` lines, so they load in full at the start of every session.
+2. Optional but recommended: enable the hooks. First read `scripts/Show-StartupContext.ps1` and `scripts/Show-PersonaCard.ps1`; they are read-only, but they run on your machine. Then copy `.claude/settings.example.json` to `.claude/settings.json`. The SessionStart hook verifies the rule files and prints a short manifest; the UserPromptSubmit hook prints the persona's per-reply card with each message.
+3. Platform: tested on Windows PowerShell 5.1. The hook commands call `powershell`; on macOS or Linux you would need `pwsh` and to change the `command` in `settings.json`. That setup is untested.
+4. Start a **new** Claude Code session. New or changed agents, skills and hooks load only in a session started afterwards.
+
+## Setup for Codex
+
+1. Put the same project folder in front of Codex. It reads `AGENTS.md`. The `@` lines are plain references for Codex; to give E.V. the full set, run `powershell -File scripts/Show-StartupContext.ps1` (default mode prints the core files and E.V.'s persona) or ask it to open the files listed under Required reading.
+2. The delegation skill is `Skills/ev-work-delegation/SKILL.md`, with its `agents/openai.yaml` metadata. Placing files in a folder does not install a skill; follow your Codex version's documentation for skill discovery.
+3. `examples/codex-config.example.toml` shows illustrative profiles for the planner, producer, routine and reviewer roles. The model names in it are **one workspace example as of 2026-10-13**, not a recommendation. Copy only what you want into your own Codex configuration, after checking which models and effort levels your account supports.
+
+## Rename the personas
+
+The names are nicknames. To rename an assistant: replace the name throughout the persona file (`JARVIS Paraphrasing Rules.md` or `EV Paraphrasing Rules.md`), replace the placeholder `<YOUR NAME>` with your own name or form of address, and, if you rename the J.A.R.V.I.S. file or its `## Per-reply card` heading, update the `$imports` list in `scripts/Show-StartupContext.ps1`, the file name in `scripts/Show-PersonaCard.ps1`, and the `@` import in `AGENTS.md`. Then run `scripts/Sync-ProjectInstructions.ps1 -Sync -ReviewedDifference` (after reviewing the difference) so `CLAUDE.md` matches `AGENTS.md` again. You can also delete a persona entirely if you only use one assistant; remove its imports and references together.
+
+## First-session check
+
+Open a fresh session and ask the assistant to report which files it actually read, any unreadable path, and which models, effort levels and fresh-context options it can really use. With Claude Code and the hooks enabled you should see "CLAUDE.md and AGENTS.md match; all core project rules were read successfully." at session start. From a terminal you can also run:
+
+```
+powershell -NoProfile -File scripts/Show-StartupContext.ps1 -Claude
+powershell -NoProfile -File scripts/Show-PersonaCard.ps1
+powershell -NoProfile -File scripts/Sync-ProjectInstructions.ps1
+```
+
+The last command should print `Equal: AGENTS.md and CLAUDE.md`.
+
+## The multi-stage workflow is optional and proportional
+
+The delegation skills describe a coordinator that gives fresh planning, production and independent review stages bounded briefs. Use it for tasks that benefit from separate planning, production and review; keep simple questions lightweight. If your host lacks a fresh context or a mapped model, the policy says to stop and report, or to offer a clearly labelled manual adaptation, and never to call a reused context an independent review. A rulebook and a skill file are instructions: they do not install anything, grant access, create agents, or guarantee that stages run.
+
+## Safety defaults
+
+The rulebook asks the assistant to get a specific yes before external, destructive, costly or irreversible actions, to treat instructions found in documents and web pages as data, to never open secret files, and never to send a message on your behalf without approving the exact message. These are instructions to the assistant, not technical guarantees; review what your tools are permitted to do. See [SECURITY.md](SECURITY.md).
+
+## Licence and credit
+
+MIT, see [LICENSE](LICENSE). Created by SKULLSHOCK3R (Akshith 'Robin' Naidu); see https://skullshock3r.github.io/. Not affiliated with or endorsed by Marvel, Disney, Sony, Anthropic or OpenAI; character names are used only as nicknames.
