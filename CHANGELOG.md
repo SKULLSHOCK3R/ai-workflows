@@ -6,4 +6,4 @@
 * Two conversational personas (J.A.R.V.I.S. for Claude Code, E.V. for Codex) as original generic styles, with placeholders for the user's name.
 * Six Claude Code stage subagents, the Claude delegation skill, and an example hooks file.
 * The Codex delegation skill with `agents/openai.yaml` metadata and an example Codex profiles file.
-* Three read-only PowerShell helper scripts (startup check, persona card, rulebook sync check), tested on Windows PowerShell 5.1.
+* Three PowerShell helper scripts, tested on Windows PowerShell 5.1: a read-only startup check, a read-only persona card, and a rulebook sync script that only checks unless run with `-Sync -ReviewedDifference`.
