@@ -2,7 +2,7 @@
 
 A starter kit for running two AI coding assistants from one shared rulebook: **J.A.R.V.I.S.** on Claude Code and **E.V.** on Codex. Both read the same project instructions, lessons and tool conventions, each has its own conversational persona and its own optional delegation policy, and neither touches the other's files. The multi-stage workflow (fresh planning, production and independent review stages) is optional and proportional: simple questions stay simple.
 
-Created by SKULLSHOCK3R (Akshith 'Robin' Naidu).
+Created by SKULLSHOCK3R (Akshith 'Robin' Naidu): https://skullshock3r.github.io/
 
 Released under the MIT License (see [LICENSE](LICENSE)).
 
