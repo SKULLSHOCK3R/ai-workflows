@@ -12,3 +12,9 @@ This kit is a sanitised, generic extract of a private working setup. The followi
 * Paid-service setups, billing details and usage figures.
 * Third-party packages, runtimes, models and downloaded reference documents.
 * Files for other domains in the private workspace (document templates, logos, writing-comparison skills).
+* Personal ethics rulings and the worked examples behind them.
+* Incident records, gate logs and audit-register contents from real use.
+* Connector identifiers and the exact tool-name lists of a real workspace.
+* The private research bay's code, its tool pins and its allowlists.
+* The Gemini reader script and any key handling.
+* The launcher that calls the Codex assistant, and the identifiers of any chat it uses.
