@@ -4,7 +4,7 @@ Copy this file to `outputs/shaka/AUDIT-REGISTER.md` and replace the example row.
 
 | # | Outward path | What leaves or what it does | Guard | Owner | Last checked |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Example: `notify.py` (fictional) | One plain-text alert to the user's own phone | Fixed recipient, rate limit of one alert per 10 minutes, refuses text containing addresses or links | Coordinator | 2026-01-01 |
+| 1 | Example: `send-alert.py` (fictional) | One plain-text alert to the user's own phone | Fixed recipient, rate limit of one alert per 10 minutes, refuses text containing addresses or links | Coordinator | 2026-01-01 |
 
 Rules:
 
