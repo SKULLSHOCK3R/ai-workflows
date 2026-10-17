@@ -16,7 +16,7 @@ param(
 
 try { [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 } catch {}
 
-$core = @('Project Startup.md', 'lessons.md', 'Tool Conventions.md')
+$core = @('Project Startup.md', 'lessons.md', 'Tool Conventions.md', 'Shaka Ethics.md')
 if ($Claude) { $core += 'JARVIS Paraphrasing Rules.md' } else { $core += 'EV Paraphrasing Rules.md' }
 $delegation = if ($Claude) { '.claude/skills/jarvis-work-delegation/SKILL.md (your optional delegation policy for substantial tasks)' } else { 'Skills/ev-work-delegation/SKILL.md (your optional delegation policy for substantial tasks)' }
 $onDemand = @(
@@ -30,6 +30,7 @@ $sizeBudgets = [ordered]@{
     'lessons.md'              = 24576
     'Tool Conventions.md'     = 14336
     'Project Startup.md'      = 14336
+    'Shaka Ethics.md'         = 8192
     'lessons/Example Area Lessons.md' = 16384
 }
 
@@ -75,7 +76,7 @@ if ($hashes.ContainsKey('AGENTS.md') -and $hashes.ContainsKey('CLAUDE.md')) {
 
 if ($Claude) {
     # Claude loads the core files through CLAUDE.md @imports (AGENTS.md, Required reading); confirm they are present.
-    $imports = @('@lessons.md', '@Tool\ Conventions.md', '@Project\ Startup.md', '@JARVIS\ Paraphrasing\ Rules.md')
+    $imports = @('@lessons.md', '@Tool\ Conventions.md', '@Project\ Startup.md', '@Shaka\ Ethics.md', '@JARVIS\ Paraphrasing\ Rules.md')
     $claudePath = Join-Path $Root 'CLAUDE.md'
     try {
         $claudeText = [IO.File]::ReadAllText((Resolve-Path -LiteralPath $claudePath -ErrorAction Stop).ProviderPath, (New-Object System.Text.UTF8Encoding($false)))
