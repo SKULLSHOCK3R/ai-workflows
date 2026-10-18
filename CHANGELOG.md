@@ -7,6 +7,7 @@
 * New `examples/AUDIT-REGISTER.example.md` and `examples/INCIDENTS.example.md`.
 * Delegation policies: fixed ethics block in every stage brief, a reviewer ethics check, a usage guard, and optional ChatGPT/Codex and Gemini stage patterns. New `jarvis-architect` subagent (seven roles); the top-tier roles are shown as one workspace example as of 17 October 2026.
 * Tool Conventions: Tool gate, External reader (Gemini) and Calling the other assistant bullets.
+* Delegation skill: an optional on-request page-inspection stage pattern (no code shipped); README and EXCLUDED.md updated to match.
 * Three new generic lessons; README sections "One workflow, three models" and "Modules and roadmap"; EXCLUDED.md additions.
 
 ## 0.1.0 - 2026-10-13

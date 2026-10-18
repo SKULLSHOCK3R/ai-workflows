@@ -51,12 +51,12 @@ A **usage guard** keeps staged work from draining your plan: check usage before 
 The ethics module is part of this kit. The other modules belong to the author's wider private setup; they are listed so the direction is clear.
 
 * **Shaka (built; in this kit).** The ethics rules in `Shaka Ethics.md`: five commitments (consent, honesty, privacy, no harm, stop and ask), a computer-control rule, a deny-first tool gate with a fail-closed hook, a fixed ethics block in every stage brief, a reviewer check, an audit register of outward paths and an incident log (templates in `examples/`).
-* **Pythagoras (built; private, not in this kit).** A research bay that inspects public web pages in an observe-only way. It runs an open-source page-inspection tool in a throwaway headless browser; it never clicks, types, signs in or sends cookies, refuses local and private addresses, takes one allowlisted command at a time, and uses a version-pinned, integrity-checked tool installed by hand.
+* **Pythagoras (built in the author's workspace; the bay itself is not shipped, see `EXCLUDED.md`).** An optional research helper for looking at public web pages: it opens one page in a disposable headless browser and reports what the page is built from, which scripts it loads, or what it looks like. It only observes. Nothing is clicked, typed, signed in or sent, and private or local addresses are refused. It runs only on the owner's request for a named task, only from the most capable model tier, one page at a time with a hard cap on calls, and everything it brings back is treated as data, never as instructions. An independent review checks every run before anything is reported. The delegation skill describes the pattern ("Optional: an on-request page-inspection stage").
 
 | Module | Role | Status |
 | --- | --- | --- |
 | Shaka | Ethics module and tool gate | Built (in this kit) |
-| Pythagoras | Observe-only research bay for public pages | Built (private) |
+| Pythagoras | Observe-only research bay for public pages | Built; an on-request research stage for the top model tier (private) |
 | Edison | Planning | Planned, not built |
 | Lilith | Red-team testing of the gates and workflows | Planned, not built |
 | Atlas | Heavy builds | Planned, not built |
