@@ -15,6 +15,6 @@ This kit is a sanitised, generic extract of a private working setup. The followi
 * Personal ethics rulings and the worked examples behind them.
 * Incident records, gate logs and audit-register contents from real use.
 * Connector identifiers and the exact tool-name lists of a real workspace.
-* The private research bay's code, its tool pins and its allowlists, and the page-inspection bay and its launcher.
+* The private research bay (the page-inspection tool): its code, tool pins and allowlists, and the launcher that calls it from a stage.
 * The Gemini reader script and any key handling.
 * The launcher that calls the Codex assistant, and the identifiers of any chat it uses.
