@@ -1,6 +1,6 @@
 ---
 name: jarvis-reviewer
-description: J.A.R.V.I.S. stage agent (Opus, medium effort): independent final review of every completed deliverable.
+description: J.A.R.V.I.S. stage agent (Opus, medium effort): independent review of work that leaves the machine or is hard to undo (see the delegation policy, step 3).
 model: opus
 effort: medium
 ---

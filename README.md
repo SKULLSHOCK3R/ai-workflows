@@ -4,7 +4,7 @@ A starter kit for running two AI coding assistants from one shared rulebook: **J
 
 Created by SKULLSHOCK3R (Akshith 'Robin' Naidu): https://skullshock3r.github.io/
 
-Version 0.2.0 adds an ethics module (Shaka), a tool gate that blocks risky tools, a usage guard for stages, and optional second-model stages (ChatGPT/Codex and Google Gemini). See [CHANGELOG.md](CHANGELOG.md).
+Version 0.3.0 makes the workflow lighter: the assistant does the work directly by default, uses stages only where they help, and keeps an independent review for work that leaves the machine or is hard to undo. Version 0.2.0 added an ethics module (Shaka), a tool gate that blocks risky tools, a usage guard for stages, and optional second-model stages (ChatGPT/Codex and Google Gemini). See [CHANGELOG.md](CHANGELOG.md).
 
 Released under the MIT License (see [LICENSE](LICENSE)).
 
@@ -38,7 +38,7 @@ The kit is one workflow with three models that each do what they are good at. Cl
 
 | Model | Role | How it is used |
 | --- | --- | --- |
-| Claude (J.A.R.V.I.S., in Claude Code) | Coordinator and stage workers | Owns scope, approvals, briefs, evidence and the final result. Runs the `jarvis-*` stages. The independent final review is always a fresh Claude stage. |
+| Claude (J.A.R.V.I.S., in Claude Code) | Coordinator and stage workers | Owns scope, approvals, briefs, evidence and the final result. Does most work directly and runs `jarvis-*` stages where they help. An independent review, always a fresh Claude stage, covers work that leaves the machine or is hard to undo. |
 | ChatGPT / Codex (E.V.) | Second assistant; optional read-only stage | Works from the same rulebook in Codex. The coordinator can ask it for a second opinion on a high-stakes plan, for overflow when the Claude allowance is stretched, or for a capability Claude lacks. It runs read-only on your ChatGPT login and returns content; it never replaces the required review. |
 | Google Gemini | Free, read-only document and image reader; optional stage | A small script you review uploads one file to the Gemini API with a fixed prompt and saves the reply. No other access to your computer, no actions, no edits. Use a key from a free-tier project with no billing. You approve it first, and nothing private or secret is uploaded. |
 
@@ -96,7 +96,7 @@ The last command should print `Equal: AGENTS.md and CLAUDE.md`. `-ExecutionPolic
 
 ## The multi-stage workflow is optional and proportional
 
-The delegation skills describe a coordinator that gives fresh planning, production and independent review stages bounded briefs. Use it for tasks that benefit from separate planning, production and review; keep simple questions lightweight. If your host lacks a fresh context or a mapped model, the policy says to stop and report, or to offer a clearly labelled manual adaptation, and never to call a reused context an independent review. A rulebook and a skill file are instructions: they do not install anything, grant access, create agents, or guarantee that stages run.
+The delegation skills describe a coordinator that does most work itself and gives fresh planning, production and review stages bounded briefs only where that helps: parallel pieces, long or specialist work, or a second opinion. An independent review is kept for work that leaves the machine or is hard to undo. If your host lacks a fresh context or a mapped model, the policy says to stop and report, or to offer a clearly labelled manual adaptation, and never to call a reused context an independent review. A rulebook and a skill file are instructions: they do not install anything, grant access, create agents, or guarantee that stages run.
 
 ## Safety defaults
 

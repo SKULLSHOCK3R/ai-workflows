@@ -54,6 +54,6 @@ Shaka and Pythagoras are built; the others are planned, not built. All of them i
 
 ## Maintenance
 
-* This file is core: it is imported into CLAUDE.md, listed in `$core` and `$sizeBudgets` in [Show-StartupContext.ps1](scripts/Show-StartupContext.ps1) and named in the AGENTS.md Required reading and quick-task list; change those together ([Project Startup.md](Project%20Startup.md), Maintenance). Keep it under budget by pointing at rules elsewhere rather than copying them.
+* This file is core: it is imported into CLAUDE.md, listed in `$core` and `$sizeBudgets` in [Show-StartupContext.ps1](scripts/Show-StartupContext.ps1) and named in the AGENTS.md Required reading; change those together ([Project Startup.md](Project%20Startup.md), Maintenance). Keep it under budget by pointing at rules elsewhere rather than copying them.
 * The gated-tool list lives only in `.claude/settings.json`; this file describes classes, never tool names.
 * Only the user's yes in chat changes this file; record the date and reason in the incident log or a lesson.

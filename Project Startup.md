@@ -39,6 +39,6 @@ For later instruction edits, update AGENTS.md, review drift, and synchronize CLA
 
 ## Maintenance
 
-* When a rule or reference file that sessions load or list is added, renamed or moved, update in the same change: the reading order and table here, the AGENTS.md Required reading link and `@` import if the file is core (and the import list in Show-StartupContext.ps1), the list of rule and instruction files in the AGENTS.md quick-task test, the `$core` or `$onDemand` list in [Show-StartupContext.ps1](scripts/Show-StartupContext.ps1), and its `$sizeBudgets` table if the file is a lesson file or a core rule file.
+* When a rule or reference file that sessions load or list is added, renamed or moved, update in the same change: the reading order and table here, the AGENTS.md Required reading link and `@` import if the file is core (and the import list in Show-StartupContext.ps1), the `$core` or `$onDemand` list in [Show-StartupContext.ps1](scripts/Show-StartupContext.ps1), and its `$sizeBudgets` table if the file is a lesson file or a core rule file.
 * Rows say what a file is for and link to it; keep the rules themselves in the linked file.
 * Files imported into CLAUDE.md (lessons.md, Tool Conventions.md, this file, Shaka Ethics.md and JARVIS Paraphrasing Rules.md) must never contain a space, `@` and a path outside code spans, or Claude Code imports that file too. Keep any hook's printed output under 10,000 characters.
