@@ -34,10 +34,10 @@ if ($hasTarget -and -not $ReviewedDifference) {
     throw 'CLAUDE.md differs. Review its contents, then rerun with -Sync -ReviewedDifference.'
 }
 if ($hasTarget) {
-    # All backups live in the backups folder, never in the project root.
-    $backupDir = Join-Path $Root 'backups'
+    # Backups live in backups\<group>\<task>-<stamp>, never in the project root or at the top of backups.
+    $backupDir = Join-Path $Root ('backups\sync\claude-md-{0}-{1}' -f (Get-Date -Format 'yyyyMMdd-HHmmss'), [guid]::NewGuid().ToString('N'))
     if (-not (Test-Path -LiteralPath $backupDir -PathType Container)) { New-Item -ItemType Directory -Path $backupDir -ErrorAction Stop | Out-Null }
-    $backup = Join-Path $backupDir ("CLAUDE.md.backup-{0}-{1}" -f (Get-Date -Format 'yyyyMMdd-HHmmss'), [guid]::NewGuid().ToString('N'))
+    $backup = Join-Path $backupDir 'CLAUDE.md'
     Copy-Item -LiteralPath $claude -Destination $backup -ErrorAction Stop
     if ((Get-FileHashValue $backup) -ne $targetHash) { throw "Backup verification failed: $backup" }
     Write-Output "Backed up differing CLAUDE.md to $backup"

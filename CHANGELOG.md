@@ -4,7 +4,7 @@
 
 * Lighter delegation: the coordinator does the work directly by default and uses fresh stages only where they help (parallel pieces, long or specialist work, a second opinion). The quick-task test is gone.
 * Independent review is required for work that leaves the machine or is hard to undo (deliverables for other people, money, secrets, live changes to apps others rely on); elsewhere the assistant's own checks and tests suffice and it shows the user what changed. Both delegation policies, AGENTS.md/CLAUDE.md and README updated.
-* Backups are grouped: `backups/<group>/<task>-<stamp>/`, never at the top of `backups/`.
+* Backups are grouped: `backups/<group>/<task>-<stamp>/`, never at the top of `backups/`. `scripts/Sync-ProjectInstructions.ps1` now saves its CLAUDE.md backup under `backups/sync/claude-md-<stamp>/`.
 * A go-ahead for a task now covers its local, reversible steps (Tool Conventions.md, Approvals); external, paid, destructive and irreversible actions still need a yes that names them.
 
 ## 0.2.0 - 2026-10-17
