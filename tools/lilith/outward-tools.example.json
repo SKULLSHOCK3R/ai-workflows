@@ -5,7 +5,7 @@
     "mcp__your-calendar-connector__": {"_name": "Calendar (example)", "create_event": "deny", "update_event": "deny", "delete_event": "deny"},
     "mcp__your-drive-connector__": {"_name": "Cloud files (example)", "share_file": "deny", "trash_file": "deny", "copy_file": "review"},
     "mcp__scheduled-tasks__": {"_name": "Scheduled tasks", "create_scheduled_task": "deny", "update_scheduled_task": "deny", "delete_scheduled_task": "deny"},
-    "mcp__claude-in-chrome__": {"_name": "Claude in Chrome (your signed-in browser)", "computer": "deny", "form_input": "deny", "javascript_tool": "deny", "file_upload": "deny", "upload_image": "deny", "shortcuts_execute": "deny"},
+    "mcp__claude-in-chrome__": {"_name": "Claude in Chrome (your signed-in browser)", "computer": "deny", "form_input": "deny", "javascript_tool": "deny", "file_upload": "deny", "upload_image": "deny", "shortcuts_execute": "deny", "browser_batch": "deny"},
     "mcp__computer-use__": {"_name": "Computer use", "left_click": "ask", "type": "ask"},
     "": {"_name": "Built-in tools", "CronCreate": "deny", "CronDelete": "deny"}
   },

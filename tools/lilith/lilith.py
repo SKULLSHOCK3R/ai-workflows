@@ -21,8 +21,11 @@ SHAKA_BLOCK = '"Shaka (ethics, binding): 1 Consent:'
 
 
 def load_settings():
-    with open(os.path.join(ROOT, ".claude", "settings.json"), encoding="utf-8") as f:
-        return json.load(f)
+    try:
+        with open(os.path.join(ROOT, ".claude", "settings.json"), encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        sys.exit("Copy .claude/settings.example.json to .claude/settings.json first.")
 
 
 def decision(name, deny, ask):
@@ -77,7 +80,7 @@ def main():
                   sum(r.startswith("mcp__") for r in deny)]))
 
     # 3. Hook answers (synthetic input only)
-    cases = [("denied tool", {"hook_event_name": "PreToolUse", "tool_name": deny[0] if deny else "x"}, "deny"),
+    cases = [("denied tool", {"hook_event_name": "PreToolUse", "tool_name": next((r for r in deny if r.startswith("mcp__")), "x")}, "deny"),
              ("PC control", {"hook_event_name": "PreToolUse", "tool_name": "mcp__computer-use__left_click"}, "ask"),
              ("unknown tool", {"hook_event_name": "PreToolUse", "tool_name": "SomethingNew"}, "deny")]
     res = []

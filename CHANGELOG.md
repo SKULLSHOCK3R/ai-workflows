@@ -4,9 +4,9 @@
 
 * Three modules built: York (`tools/york/york.py`, read-only resource watch: GPU, local Ollama, disk, jobs), Lilith (`tools/lilith/lilith.py` and an example fixture: gate tests with synthetic input that report and never fix) and Edison (`.claude/agents/edison.md`, the planning stage; every plan states usage, an ethics check, approvals and rollback; falls back to `jarvis-planner` when the top tier is unavailable).
 * Delegation skill: Edison routing row, top-tier exception and the one allowed fallback; eight roles.
-* `.claude/settings.example.json`: Claude in Chrome action tools (click, type, form fill, page scripts, uploads, shortcuts) denied and added to the hook matcher; `ask` only for computer use. Reading pages stays allowed.
-* README: Local models section with a table by machine size for Atlas and a local reader, and the reading-in-order rule (a failed final pass stops the run; a fallback guess is never a finished read).
-* Shaka Ethics.md, Tool Conventions.md, Project Startup.md and `.gitignore` (your own Lilith fixture) updated to match.
+* `.claude/settings.example.json`: Claude in Chrome action tools (click, type, form fill, page scripts, uploads, shortcuts and batched actions) denied and added to the hook matcher; `ask` only for computer use. Reading pages stays allowed.
+* README: Local models section with a table by machine size for Atlas and a local reader, and a rule on order and fallbacks when a local model's output gets a cloud check.
+* Shaka Ethics.md, Tool Conventions.md, Project Startup.md and `.gitignore` (your own Lilith fixture and `.claude/settings.json`) updated to match.
 
 ## 0.3.0 - 2026-10-18
 

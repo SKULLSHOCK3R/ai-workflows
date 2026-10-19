@@ -8,6 +8,8 @@ config*.json
 
 # Your own Lilith fixture (it lists your connectors' tool names)
 tools/lilith/outward-tools.json
+# Your own settings (its deny list names your connectors)
+.claude/settings.json
 
 # Local state and scratch
 state/

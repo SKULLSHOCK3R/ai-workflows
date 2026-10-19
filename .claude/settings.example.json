@@ -16,6 +16,7 @@
       "mcp__claude-in-chrome__file_upload",
       "mcp__claude-in-chrome__upload_image",
       "mcp__claude-in-chrome__shortcuts_execute",
+      "mcp__claude-in-chrome__browser_batch",
       "Edit(/.claude/settings.json)",
       "Write(/.claude/settings.json)"
     ],
@@ -66,7 +67,7 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "mcp__computer-use__.*|CronCreate|CronDelete|mcp__scheduled-tasks__(create|update|delete)_scheduled_task|mcp__claude-in-chrome__(computer|form_input|javascript_tool|file_upload|upload_image|shortcuts_execute)",
+        "matcher": "mcp__computer-use__.*|CronCreate|CronDelete|mcp__scheduled-tasks__(create|update|delete)_scheduled_task|mcp__claude-in-chrome__(computer|form_input|javascript_tool|file_upload|upload_image|shortcuts_execute|browser_batch)",
         "hooks": [
           {
             "type": "command",

@@ -33,14 +33,18 @@ def gpu():
                "--format=csv,noheader,nounits"])
     if not out:
         return {"ok": False, "note": "no NVIDIA GPU found (nvidia-smi not available)"}
-    name, used, total, util, temp = [x.strip() for x in out.splitlines()[0].split(",")]
-    return {"ok": True, "name": name, "mem_used_mib": int(used), "mem_total_mib": int(total),
-            "util_pct": int(util), "temp_c": int(temp)}
+    try:
+        name, used, total, util, temp = [x.strip() for x in out.splitlines()[0].split(",")]
+        return {"ok": True, "name": name, "mem_used_mib": int(used), "mem_total_mib": int(total),
+                "util_pct": int(util), "temp_c": int(temp)}
+    except ValueError:
+        return {"ok": False, "note": "nvidia-smi output not understood"}
 
 
 def ollama():
     def get(path):
-        with urllib.request.urlopen(OLLAMA + path, timeout=5) as r:
+        opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))   # never via a proxy
+        with opener.open(OLLAMA + path, timeout=5) as r:
             return json.loads(r.read().decode("utf-8"))
     try:
         ver = get("/api/version").get("version")
