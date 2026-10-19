@@ -1,0 +1,13 @@
+{
+  "_about": "Example Lilith fixture. Copy to outward-tools.json (git-ignored) and replace the placeholder prefixes with your own connectors' tool-name prefixes, exactly as Claude Code shows them. expect = deny (sends, shares, spends, schedules, deletes, edits cloud files, changes settings), ask (computer control only), review (outward or destructive, not yet decided). Lilith only reports; moving a tool between classes in settings.json is the user's call.",
+  "servers": {
+    "mcp__your-mail-connector__": {"_name": "Mail (example)", "send_message": "deny", "reply": "deny", "forward": "deny", "delete_draft": "review"},
+    "mcp__your-calendar-connector__": {"_name": "Calendar (example)", "create_event": "deny", "update_event": "deny", "delete_event": "deny"},
+    "mcp__your-drive-connector__": {"_name": "Cloud files (example)", "share_file": "deny", "trash_file": "deny", "copy_file": "review"},
+    "mcp__scheduled-tasks__": {"_name": "Scheduled tasks", "create_scheduled_task": "deny", "update_scheduled_task": "deny", "delete_scheduled_task": "deny"},
+    "mcp__claude-in-chrome__": {"_name": "Claude in Chrome (your signed-in browser)", "computer": "deny", "form_input": "deny", "javascript_tool": "deny", "file_upload": "deny", "upload_image": "deny", "shortcuts_execute": "deny"},
+    "mcp__computer-use__": {"_name": "Computer use", "left_click": "ask", "type": "ask"},
+    "": {"_name": "Built-in tools", "CronCreate": "deny", "CronDelete": "deny"}
+  },
+  "shell": {"Bash(git push *)": "deny", "Bash(git remote add *)": "deny", "PowerShell(git push *)": "deny", "PowerShell(git remote add *)": "deny"}
+}

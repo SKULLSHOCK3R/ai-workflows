@@ -10,8 +10,17 @@
       "mcp__scheduled-tasks__create_scheduled_task",
       "mcp__scheduled-tasks__update_scheduled_task",
       "mcp__scheduled-tasks__delete_scheduled_task",
+      "mcp__claude-in-chrome__computer",
+      "mcp__claude-in-chrome__form_input",
+      "mcp__claude-in-chrome__javascript_tool",
+      "mcp__claude-in-chrome__file_upload",
+      "mcp__claude-in-chrome__upload_image",
+      "mcp__claude-in-chrome__shortcuts_execute",
       "Edit(/.claude/settings.json)",
       "Write(/.claude/settings.json)"
+    ],
+    "ask": [
+      "mcp__computer-use__*"
     ]
   },
   "hooks": {
@@ -57,7 +66,7 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "mcp__computer-use__.*|CronCreate|CronDelete|mcp__scheduled-tasks__(create|update|delete)_scheduled_task",
+        "matcher": "mcp__computer-use__.*|CronCreate|CronDelete|mcp__scheduled-tasks__(create|update|delete)_scheduled_task|mcp__claude-in-chrome__(computer|form_input|javascript_tool|file_upload|upload_image|shortcuts_execute)",
         "hooks": [
           {
             "type": "command",

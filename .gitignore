@@ -6,6 +6,9 @@ config*.json
 *.pem
 *.key
 
+# Your own Lilith fixture (it lists your connectors' tool names)
+tools/lilith/outward-tools.json
+
 # Local state and scratch
 state/
 tmp/*

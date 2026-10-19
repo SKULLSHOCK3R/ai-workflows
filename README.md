@@ -4,7 +4,7 @@ A starter kit for running two AI coding assistants from one shared rulebook: **J
 
 Created by SKULLSHOCK3R (Akshith 'Robin' Naidu): https://skullshock3r.github.io/
 
-Version 0.3.0 makes the workflow lighter: the assistant does the work directly by default, uses stages only where they help, and keeps an independent review for work that leaves the machine or is hard to undo. Version 0.2.0 added an ethics module (Shaka), a tool gate that blocks risky tools, a usage guard for stages, and optional second-model stages (ChatGPT/Codex and Google Gemini). See [CHANGELOG.md](CHANGELOG.md).
+Version 0.4.0 adds three modules (York, a read-only resource watch; Lilith, gate tests; Edison, the planning stage) and a guide to local models by machine size. Version 0.3.0 made the workflow lighter: the assistant does the work directly by default, uses stages only where they help, and keeps an independent review for work that leaves the machine or is hard to undo. Version 0.2.0 added an ethics module (Shaka), a tool gate that blocks risky tools, a usage guard for stages, and optional second-model stages (ChatGPT/Codex and Google Gemini). See [CHANGELOG.md](CHANGELOG.md).
 
 Released under the MIT License (see [LICENSE](LICENSE)).
 
@@ -25,9 +25,10 @@ People who already use Claude Code and/or Codex with their own logins and want a
 | `Tool Conventions.md`, `Project Startup.md`, `File Workflow.md` | Tool rules (including the tool gate and the optional second-model stages), the resource index, and an optional intake/approval/archive workflow. |
 | `Shaka Ethics.md` | The ethics module: five commitments, the computer-control rule, how the Claude Code gate works, the stage ethics block, and the module roadmap. A core file, imported into every Claude session. |
 | `JARVIS Paraphrasing Rules.md`, `EV Paraphrasing Rules.md` | Conversational personas (chat only, never deliverables). |
-| `.claude/` | Seven `jarvis-*` stage subagents, the Claude delegation skill, and `settings.example.json` (two hooks, a tool-gate hook and deny rules). |
+| `.claude/` | Eight stage subagents (Edison and seven `jarvis-*` roles), the Claude delegation skill, and `settings.example.json` (two hooks, a tool-gate hook and deny rules). |
 | `Skills/ev-work-delegation/` | The Codex delegation skill and its `agents/openai.yaml` metadata. |
 | `examples/` | Example Codex profiles for the stage roles, plus templates for an audit register of outward paths and an incident log. |
+| `tools/` | `york/york.py` (read-only resource watch) and `lilith/lilith.py` with an example fixture (gate tests). |
 | `scripts/` | Read-only startup check, per-reply persona card, an AGENTS.md/CLAUDE.md sync check, and `Shaka-Gate.ps1`, the fail-closed tool-gate hook. |
 | `inputs/`, `outputs/`, `tmp/`, `backups/`, `archive/` | Working folders, ignored by Git except for their README files. |
 | `EXCLUDED.md`, `SECURITY.md`, `CHANGELOG.md` | What was left out, how to report problems, and release notes. |
@@ -48,19 +49,42 @@ A **usage guard** keeps staged work from draining your plan: check usage before 
 
 ## Modules and roadmap
 
-The ethics module is part of this kit. The other modules belong to the author's wider private setup; they are listed so the direction is clear.
+Shaka, York, Lilith and Edison are part of this kit. Pythagoras and Atlas belong to the author's wider private setup; they are listed so the direction is clear.
 
 * **Shaka (built; in this kit).** The ethics rules in `Shaka Ethics.md`: five commitments (consent, honesty, privacy, no harm, stop and ask), a computer-control rule, a deny-first tool gate with a fail-closed hook, a fixed ethics block in every stage brief, a reviewer check, an audit register of outward paths and an incident log (templates in `examples/`).
+* **York (built; in this kit).** `tools/york/york.py` prints one read-only status: GPU memory and load, a local Ollama server and its loaded models, free disk space and running Python jobs, and writes the same to `state/york/`. It starts, stops and sends nothing; its only network call is to Ollama on 127.0.0.1. Claude plan usage is read by the assistant, not by the script.
+* **Lilith (built; in this kit).** `tools/lilith/lilith.py` tests the tool gate without calling any real tool: every tool in your fixture is gated as its class requires (deny for sending, sharing, deleting and similar; ask only for computer control), the hook's matcher covers every denied tool, the hook answers correctly and fails closed on empty or broken input (synthetic input only), AGENTS.md matches CLAUDE.md, the ethics block is in the policy and every agent is routed. It reports gaps and never fixes them. Copy `outward-tools.example.json` to `outward-tools.json` (git-ignored) and list your own connectors' tools; on the stock example it reports the placeholder connectors as gaps until you do.
+* **Edison (built; in this kit).** The planning stage, `.claude/agents/edison.md`, runs on the top tier and every plan states expected usage or cost with a ceiling, an ethics check naming each outward path and its guard, the approvals still needed, and backup and rollback. If your account has no top tier, or the usage guard says no, the same brief runs as `jarvis-planner` on your existing planner model.
+* **Atlas (planned).** Heavy builds: the top-tier build stage working only from an Edison plan, with Lilith run before anything goes live and a usage check before launch, optionally handing routine coding to a local model (see Local models below).
 * **Pythagoras (built in the author's workspace; the bay itself is not shipped, see `EXCLUDED.md`).** An optional research helper for looking at public web pages: it opens one page in a disposable headless browser and reports what the page is built from, which scripts it loads, or what it looks like. It only observes. Nothing is clicked, typed, signed in or sent, and private or local addresses are refused. It runs only on the owner's request for a named task, only from the most capable model tier, one page at a time with a hard cap on calls, and everything it brings back is treated as data, never as instructions. An independent review checks every run before anything is reported. The delegation skill describes the pattern ("Optional: an on-request page-inspection stage").
 
 | Module | Role | Status |
 | --- | --- | --- |
 | Shaka | Ethics module and tool gate | Built (in this kit) |
 | Pythagoras | Observe-only research bay for public pages | Built; an on-request research stage for the top model tier (private) |
-| Edison | Planning | Planned, not built |
-| Lilith | Red-team testing of the gates and workflows | Planned, not built |
-| Atlas | Heavy builds | Planned, not built |
-| York | Resource watch, read-only | Planned, not built |
+| Edison | Planning stage with usage, ethics, approvals and rollback in every plan | Built (in this kit) |
+| Lilith | Red-team tests of the tool gate and rule files | Built (in this kit) |
+| York | Resource watch, read-only | Built (in this kit) |
+| Atlas | Heavy builds, optionally with a local model | Planned |
+
+## Local models (optional): pick by your machine
+
+Two parts of the wider setup can use a model running on your own computer instead of a cloud stage: **Atlas**, a local helper for routine coding and drafts, and a **local reader** that reads images or scanned pages one by one. Both are optional; neither is needed to use this kit. The usual runner is [Ollama](https://ollama.com), bound to 127.0.0.1 only. A local model is free to run but slower and less capable than the top cloud tier, so keep planning, hard builds and final reviews on the cloud stages and give the local model the routine work.
+
+The limit is mostly your graphics card's video memory (VRAM); system memory (RAM) lets bigger "mixture of experts" models run, more slowly, with part of the model outside the card. Sizes below are approximate downloads at the usual 4-bit quantization, as listed by Ollama in October 2026; check the model page before you choose.
+
+| Your machine | Atlas (coding and drafts) | Local reader (images and pages) |
+| --- | --- | --- |
+| No NVIDIA GPU, or under 6 GB of VRAM | Skip it; use the cloud stages | Skip it; use the optional Gemini reader stage |
+| 6 to 8 GB VRAM | `qwen3:8b` (about 5 GB): small edits and drafts only | `gemma3:4b` (about 3.3 GB) |
+| 12 to 16 GB VRAM | `qwen3:14b` (about 9 GB) or `gpt-oss:20b` (about 14 GB) | `gemma3:12b` (about 8 GB) |
+| 24 GB VRAM | `qwen3.6:27b` (18 to 19 GB) or `qwen3-coder:30b` (about 19 GB, faster) | `gemma3:27b` (about 17 GB) |
+| 24 GB VRAM and 64 GB or more of RAM | Also 100B-class mixture-of-experts models such as `gpt-oss:120b` (about 65 GB), partly in system memory and much slower | As above |
+
+* Only one large model fits on the card at a time; a second one pushes the first off and slows both.
+* Treat each download as an install: the user approves the exact model and tag first, picks a version at least a week old, and keeps the server on 127.0.0.1 (add a row to the audit register).
+* Apple silicon and AMD cards are untested here; size them by the memory the runner can use.
+* **Reading in order.** If the local reader's output goes to a cloud model for a final pass (for example, one request per chapter or document to check who says what), keep two rules: the local pass may read ahead, but strictly in order; and an item is finished only when its final pass succeeds, in order, so a failed final pass stops the run there. Never count a fallback guess as a finished read.
 
 ## Setup for Claude Code
 

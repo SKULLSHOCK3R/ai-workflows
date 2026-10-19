@@ -41,16 +41,16 @@ Breaches and near misses go to `outputs/shaka/INCIDENTS.md` (start from [example
 
 ## The module set and roadmap
 
-Shaka and Pythagoras are built; the others are planned, not built. All of them inherit this file in full.
+Shaka, Pythagoras, Edison, Lilith and York are built; Atlas is planned. All of them inherit this file in full.
 
 | Module | Role | Status |
 | --- | --- | --- |
 | Shaka | Ethics: the rules, tool gate, audit register and incident log in this file | Built |
 | Pythagoras | Research bay: observe-only inspection of public web pages (see the README); not included in this kit | Built (private) |
-| Edison | Planning | Planned, not built |
-| Lilith | Red-team testing of the gates and workflows | Planned, not built |
-| Atlas | Heavy builds | Planned, not built |
-| York | Resource watch, read-only | Planned, not built |
+| Edison | Planning stage (`.claude/agents/edison.md`); falls back to the existing planner | Built |
+| Lilith | Gate tests with synthetic input; reports, never fixes (`tools/lilith/`) | Built |
+| York | Resource watch, read-only (`tools/york/`) | Built |
+| Atlas | Heavy builds | Planned |
 
 ## Maintenance
 
