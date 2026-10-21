@@ -41,7 +41,7 @@ Breaches and near misses go to `outputs/shaka/INCIDENTS.md` (start from [example
 
 ## The module set and roadmap
 
-Shaka, Pythagoras, Edison, Lilith and York are built; Atlas is planned. All of them inherit this file in full.
+All six modules are built. All of them inherit this file in full.
 
 | Module | Role | Status |
 | --- | --- | --- |
@@ -50,7 +50,7 @@ Shaka, Pythagoras, Edison, Lilith and York are built; Atlas is planned. All of t
 | Edison | Planning stage (`.claude/agents/edison.md`); falls back to the existing planner | Built |
 | Lilith | Gate tests with synthetic input; reports, never fixes (`tools/lilith/`) | Built |
 | York | Resource watch, read-only (`tools/york/`) | Built |
-| Atlas | Heavy builds | Planned |
+| Atlas | Local heavy lifting on your own GPU (local models, a local reader), so heavy work does not use up your plan; see the README's Local models | Built (private) |
 
 ## Maintenance
 

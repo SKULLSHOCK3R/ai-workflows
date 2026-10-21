@@ -4,7 +4,7 @@ A starter kit for running two AI coding assistants from one shared rulebook: **J
 
 Created by SKULLSHOCK3R (Akshith 'Robin' Naidu): https://skullshock3r.github.io/
 
-Version 0.4.0 adds three modules (York, a read-only resource watch; Lilith, gate tests; Edison, the planning stage) and a guide to local models by machine size. Version 0.3.0 made the workflow lighter: the assistant does the work directly by default, uses stages only where they help, and keeps an independent review for work that leaves the machine or is hard to undo. Version 0.2.0 added an ethics module (Shaka), a tool gate that blocks risky tools, a usage guard for stages, and optional second-model stages (ChatGPT/Codex and Google Gemini). See [CHANGELOG.md](CHANGELOG.md).
+Version 0.4.1 redefines Atlas as local heavy lifting: the jobs that run on your own graphics card (local models and a local reader) so heavy work does not use up your plan. Version 0.4.0 adds three modules (York, a read-only resource watch; Lilith, gate tests; Edison, the planning stage) and a guide to local models by machine size. Version 0.3.0 made the workflow lighter: the assistant does the work directly by default, uses stages only where they help, and keeps an independent review for work that leaves the machine or is hard to undo. Version 0.2.0 added an ethics module (Shaka), a tool gate that blocks risky tools, a usage guard for stages, and optional second-model stages (ChatGPT/Codex and Google Gemini). See [CHANGELOG.md](CHANGELOG.md).
 
 Released under the MIT License (see [LICENSE](LICENSE)).
 
@@ -49,13 +49,13 @@ A **usage guard** keeps staged work from draining your plan: check usage before 
 
 ## Modules and roadmap
 
-Shaka, York, Lilith and Edison are part of this kit. Pythagoras and Atlas belong to the author's wider private setup; they are listed so the direction is clear.
+Shaka, York, Lilith and Edison are part of this kit. Pythagoras and the author's own Atlas setup are private; they are listed so the direction is clear, and the Local models section below shows how to set up an Atlas of your own.
 
 * **Shaka (built; in this kit).** The ethics rules in `Shaka Ethics.md`: five commitments (consent, honesty, privacy, no harm, stop and ask), a computer-control rule, a deny-first tool gate with a fail-closed hook, a fixed ethics block in every stage brief, a reviewer check, an audit register of outward paths and an incident log (templates in `examples/`).
 * **York (built; in this kit).** `tools/york/york.py` prints one read-only status: GPU memory and load, a local Ollama server and its loaded models, free disk space and running Python jobs (Windows), and writes the same to `state/york/`. It starts, stops and sends nothing; its only network call is to Ollama on 127.0.0.1. Claude plan usage is read by the assistant, not by the script.
 * **Lilith (built; in this kit; Windows PowerShell).** `tools/lilith/lilith.py` tests the tool gate without calling any real tool: every tool in your fixture is gated as its class requires (deny for sending, sharing, deleting and similar; ask only for computer control), the hook's matcher covers every denied connector (`mcp__`) tool and computer control, the hook answers correctly and fails closed on empty or broken input (synthetic input only), AGENTS.md matches CLAUDE.md, the ethics block is in the policy and every agent is routed. It reports gaps and never fixes them. Copy `outward-tools.example.json` to `outward-tools.json` (git-ignored) and list your own connectors' tools; on the stock example it reports the placeholder connectors as gaps until you do.
 * **Edison (built; in this kit).** The planning stage, `.claude/agents/edison.md`, runs on the top tier and every plan states expected usage or cost with a ceiling, an ethics check naming each outward path and its guard, the approvals still needed, and backup and rollback. If your account has no top tier, or the usage guard says no, the same brief runs as `jarvis-planner` on your existing planner model.
-* **Atlas (planned).** Heavy builds: the top-tier build stage working only from an Edison plan, with Lilith run before anything goes live and a usage check before launch, optionally handing routine coding to a local model (see Local models below).
+* **Atlas (built in the author's workspace; set up your own with Local models below).** Local heavy lifting: the jobs that run on your own graphics card instead of a cloud stage, so heavy work does not use up your plan. In the author's setup that means local models for drafts and routine coding, a local reader that reads images or scanned pages one by one ahead of a cloud check, and an image upscaler. Top-tier builds stay a cloud stage (`jarvis-architect`) working from an Edison plan. York watches Atlas's GPU and disk, and Lilith tests the gates before anything new goes live.
 * **Pythagoras (built in the author's workspace; the bay itself is not shipped, see `EXCLUDED.md`).** An optional research helper for looking at public web pages: it opens one page in a disposable headless browser and reports what the page is built from, which scripts it loads, or what it looks like. It only observes. Nothing is clicked, typed, signed in or sent, and private or local addresses are refused. It runs only on the owner's request for a named task, only from the most capable model tier, one page at a time with a hard cap on calls, and everything it brings back is treated as data, never as instructions. An independent review checks every run before anything is reported. The delegation skill describes the pattern ("Optional: an on-request page-inspection stage").
 
 | Module | Role | Status |
@@ -65,15 +65,15 @@ Shaka, York, Lilith and Edison are part of this kit. Pythagoras and Atlas belong
 | Edison | Planning stage with usage, ethics, approvals and rollback in every plan | Built (in this kit) |
 | Lilith | Red-team tests of the tool gate and rule files | Built (in this kit) |
 | York | Resource watch, read-only | Built (in this kit) |
-| Atlas | Heavy builds, optionally with a local model | Planned |
+| Atlas | Local heavy lifting on your own GPU: local models, a local reader, an image upscaler | Built (private); set up your own with Local models |
 
 ## Local models (optional): pick by your machine
 
-Two kinds of work can use a model running on your own computer instead of a cloud stage: **Atlas**, a local helper for routine coding and drafts, and a **local reader** that reads images or scanned pages one by one. Both are optional; neither is needed to use this kit. The usual runner is [Ollama](https://ollama.com), bound to 127.0.0.1 only. A local model is free to run but slower and less capable than the top cloud tier, so keep planning, hard builds and final reviews on the cloud stages and give the local model the routine work.
+**Atlas** is the work that runs on your own computer instead of a cloud stage, in two kinds: a local helper for routine coding and drafts, and a **local reader** that reads images or scanned pages one by one. Both are optional; neither is needed to use this kit. The usual runner is [Ollama](https://ollama.com), bound to 127.0.0.1 only. A local model is free to run but slower and less capable than the top cloud tier, so keep planning, hard builds and final reviews on the cloud stages and give the local model the routine work.
 
 The limit is mostly your graphics card's video memory (VRAM); system memory (RAM) lets bigger "mixture of experts" models run, more slowly, with part of the model outside the card. Sizes below are approximate downloads at the usual 4-bit quantization, as listed by Ollama in October 2026; check the model page before you choose.
 
-| Your machine | Atlas (coding and drafts) | Local reader (images and pages) |
+| Your machine | Atlas: coding and drafts | Atlas: local reader (images and pages) |
 | --- | --- | --- |
 | No NVIDIA GPU, or under 6 GB of VRAM | Skip it; use the cloud stages | Skip it; use the optional Gemini reader stage |
 | 6 to 8 GB VRAM | `qwen3:8b` (about 5 GB): small edits and drafts only | `gemma3:4b` (about 3.4 GB) |

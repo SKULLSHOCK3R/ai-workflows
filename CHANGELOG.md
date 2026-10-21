@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1 - 2026-10-21
+
+* Atlas redefined and marked built (in the author's workspace): local heavy lifting, meaning the jobs that run on your own graphics card (local models for drafts and routine coding, a local reader for images and scanned pages, an image upscaler) so heavy work does not use up your plan. Top-tier builds stay the `jarvis-architect` cloud stage. README modules list, table and Local models headings, and Shaka Ethics.md's module table updated to match.
+
 ## 0.4.0 - 2026-10-19
 
 * Three modules built: York (`tools/york/york.py`, read-only resource watch: GPU, local Ollama, disk, jobs), Lilith (`tools/lilith/lilith.py` and an example fixture: gate tests with synthetic input that report and never fix) and Edison (`.claude/agents/edison.md`, the planning stage; every plan states usage, an ethics check, approvals and rollback; falls back to `jarvis-planner` when the top tier is unavailable).
