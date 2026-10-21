@@ -41,7 +41,7 @@ Breaches and near misses go to `outputs/shaka/INCIDENTS.md` (start from [example
 
 ## The module set and roadmap
 
-All six modules are built. All of them inherit this file in full.
+All six modules are built, and all of them inherit this file in full.
 
 | Module | Role | Status |
 | --- | --- | --- |
