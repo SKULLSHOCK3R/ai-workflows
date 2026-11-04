@@ -1,0 +1,37 @@
+{
+  "toolPermission": "request-review",
+  "agentMode": "",
+  "allowNonWorkspaceAccess": false,
+  "enableTerminalSandbox": true,
+  "useG1Credits": false,
+  "notifications": false,
+  "showTips": false,
+  "showFeedbackSurvey": false,
+  "disableSlashCommands": true,
+  "historySize": 0,
+  "permissions": {
+    "allow": [
+      "write_file(__WORKDIR__)"
+    ],
+    "ask": [],
+    "deny": [
+      "write_file(<PROJECT ROOT>)",
+      "write_file(<USER PROFILE FOLDER>)",
+      "command(*)",
+      "read_url(*)",
+      "execute_url(*)",
+      "mcp(*)",
+      "custom(*)",
+      "read_file(<PROJECT ROOT>/state)",
+      "read_file(<PROJECT ROOT>/.claude)",
+      "read_file(<PROJECT ROOT>/.git)",
+      "read_file(<PROJECT ROOT>/.codex)",
+      "read_file(<PROJECT ROOT>/.agents)",
+      "read_file(<PROJECT ROOT>/inputs)",
+      "read_file(<PROJECT ROOT>/archive)",
+      "read_file(<PROJECT ROOT>/backups)",
+      "read_file(<PROJECT ROOT>/tools/antigravity)",
+      "read_file(<USER PROFILE FOLDER>)"
+    ]
+  }
+}

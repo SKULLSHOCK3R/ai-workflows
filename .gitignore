@@ -10,6 +10,8 @@ config*.json
 tools/lilith/outward-tools.json
 # Your own settings (its deny list names your connectors)
 .claude/settings.json
+# Your Antigravity CLI folder and filled settings locks (they name your folders)
+tools/antigravity/
 
 # Local state and scratch
 state/
