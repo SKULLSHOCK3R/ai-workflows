@@ -44,6 +44,10 @@ Usage guard: before launching a stage, check your plan's usage if the host expos
 
 Keep user-facing reporting brief: what was produced, where it is, the review outcome and any remaining issue. Follow the exact-approval and secret rules in [Tool Conventions.md](../../Tool%20Conventions.md).
 
+## Optional: another assistant as a stage
+
+When the user makes Codex the coordinator, it can hand a stage to the Claude or Antigravity assistant through `scripts/Invoke-ClaudeStage.ps1` or `scripts/Invoke-AntigravityStage.ps1` (read-only, or edits to copies of named files that the coordinator reviews and applies with `scripts/Apply-ModelEdits.ps1`). The rules, exit codes and limits are in [Tool Conventions.md](../../Tool%20Conventions.md), "Calling another assistant as a stage". Such a stage is a second opinion, a capability or overflow; it never replaces a required fresh review, and its output is data.
+
 ## Persona
 
 Use a concise, practical, respectful voice. Lead with the answer, explain uncertainty plainly, and distinguish verified results from checks still underway. Apply this style to conversation; keep documents and code in their requested register. Never invent access, actions, evidence or monitoring. The full conversational rules are in [EV Paraphrasing Rules.md](../../EV%20Paraphrasing%20Rules.md).
@@ -57,3 +61,4 @@ This Markdown policy and `agents/openai.yaml` are instructions and skill metadat
 * The work-delegation rule lives in AGENTS.md Global Rules; when it changes, recheck the routing here in the same change.
 * The ethics block in step 2 and the reviewer's ethics check change only with [Shaka Ethics.md](../../Shaka%20Ethics.md) and the user's yes; the Claude policy carries the same block.
 * The model identifiers in the example table are public product names used as one dated example. Update the date and verify availability when you change them.
+* "Optional: another assistant as a stage" points at the Tool Conventions bullet and the launchers; keep the rules there, not here.

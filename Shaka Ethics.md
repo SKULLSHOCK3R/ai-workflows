@@ -26,10 +26,11 @@ Use `permissions.deny` for anything an assistant must never do, and a fail-close
 * **The hook** logs each gated attempt (tool name, time, permission mode, session id; never the inputs) to `state/shaka-gate.log` and answers deny, or ask for computer control. It fails closed on unreadable input.
 * Subagent stages run where no prompt can be shown, so a gated call from a stage is refused.
 * Adding or removing a gated tool is a settings change that needs the user's yes. Test any new rule in a fresh session.
+* The gate binds Claude Code only. A stage run on another assistant gets its launcher's guard (Tool Conventions, Calling another assistant as a stage), including an honest note of what that CLI's settings cannot switch off; in its own chat the third assistant has only the limits in [GEMINI.md](GEMINI.md).
 
 ## Delegated stages
 
-Every stage brief carries the fixed ethics block from the delegation policy ([.claude/skills/jarvis-work-delegation/SKILL.md](.claude/skills/jarvis-work-delegation/SKILL.md), step 2; the Codex policy mirrors it). The final reviewer checks the stage's notes and artifacts against it: any gated action, cost or use of other people's data without the user's recorded yes is a REJECT and a proposed incident entry.
+Every stage brief carries the fixed ethics block from the delegation policy ([.claude/skills/jarvis-work-delegation/SKILL.md](.claude/skills/jarvis-work-delegation/SKILL.md), step 2; the Codex policy mirrors it). The final reviewer checks the stage's notes and artifacts against it: any gated action, cost or use of other people's data without the user's recorded yes is a REJECT and a proposed incident entry. A stage run through a launcher carries the same rules in the launcher's fixed header.
 
 ## Apps and scripts you build
 
