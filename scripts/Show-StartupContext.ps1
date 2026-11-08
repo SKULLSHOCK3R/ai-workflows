@@ -22,6 +22,7 @@ $delegation = if ($Claude) { '.claude/skills/jarvis-work-delegation/SKILL.md (yo
 $onDemand = @(
     'File Workflow.md (before handling files in inputs)',
     'lessons/<Area> Lessons.md (area-specific lessons; see lessons/Example Area Lessons.md)',
+    'Lesson Details.md (full text behind shortened lesson lines)',
     $delegation
 )
 # Byte budgets (1 KB = 1024). A file over budget prints a maintenance notice only; it is never a startup error.
@@ -124,7 +125,7 @@ if ($Claude) {
         # Stderr is hidden from Claude on exit 0, so report a missing card script on stdout.
         $out.Add("WARNING: ${cardScript} is missing, so the per-reply card was not printed. Open JARVIS Paraphrasing Rules.md in full before replying, and tell the user the card hook needs attention.")
     }
-    $out.Add('The same card is injected with every user message by Show-PersonaCard.ps1.')
+    $out.Add('Show-PersonaCard.ps1 injects this card again with a chat''s first message and the shorter Short card with every later one.')
     $out.Add('')
     $out.Add('Open when relevant (not preloaded):')
     foreach ($item in $onDemand) { $out.Add("- $item") }

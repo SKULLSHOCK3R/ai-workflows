@@ -4,7 +4,7 @@ A starter kit for running three AI coding assistants from one shared rulebook: J
 
 It is for people who already use any one of Claude Code, Codex or Antigravity with their own logins and want one rulebook, lessons that persist between sessions, approval rules for external, paid and irreversible actions, and a repeatable review habit.
 
-Current version: 0.5.0 (see [CHANGELOG.md](CHANGELOG.md)). Released under the MIT License (see [LICENSE](LICENSE)). Created by SKULLSHOCK3R (Akshith 'Robin' Naidu): https://skullshock3r.github.io/
+Current version: 0.5.1 (see [CHANGELOG.md](CHANGELOG.md)). Released under the MIT License (see [LICENSE](LICENSE)). Created by SKULLSHOCK3R (Akshith 'Robin' Naidu): https://skullshock3r.github.io/
 
 > Not affiliated with or endorsed by Marvel, Disney, Sony, Anthropic, OpenAI or Google; character names are used only as nicknames. You can rename all three assistants (see [Rename the personas](#rename-the-personas)).
 >
@@ -145,7 +145,7 @@ The quick start covers the copy and the first session. This section explains wha
 
 ### Hooks
 
-Optional but recommended. First read `scripts/Show-StartupContext.ps1` and `scripts/Show-PersonaCard.ps1`; they are read-only, but they run on your machine. Then copy `.claude/settings.example.json` to `.claude/settings.json` (or, if you already have one, merge its `hooks` block into yours). The SessionStart hook verifies the rule files and prints a short manifest; the UserPromptSubmit hook prints the persona's per-reply card with each message.
+Optional but recommended. First read `scripts/Show-StartupContext.ps1` and `scripts/Show-PersonaCard.ps1`; the first only reads and the second writes only one empty marker per chat in `state/persona-card/`, but both run on your machine. Then copy `.claude/settings.example.json` to `.claude/settings.json` (or, if you already have one, merge its `hooks` block into yours). The SessionStart hook verifies the rule files and prints a short manifest; the UserPromptSubmit hook prints the persona's per-reply card with a chat's first message and the shorter Short card after that.
 
 ### Tool gate
 
@@ -191,6 +191,7 @@ The rulebook asks the assistant to get a specific yes before external, destructi
 
 | Version | Summary |
 | --- | --- |
+| 0.5.1 | Lighter fixed context: the persona hook prints the full card only with a chat's first message and a Short card after that; stage agents read a 4 KB stage charter instead of the whole delegation policy; lesson lines are capped at about 400 bytes, with longer detail in Lesson Details.md. |
 | 0.5.0 | A third assistant (Gemini in Google Antigravity) with its own entry point and persona; any assistant can coordinate, through three launchers with one shape; edits by other models on copies only, applied by a checked script; agents by model and five callers; a method for choosing models by task type; and a plain statement of what each CLI's settings cannot switch off. |
 | 0.4.1 | Atlas redefined as local heavy lifting: the jobs that run on your own graphics card (local models and a local reader) so heavy work does not use up your plan. |
 | 0.4.0 | Three modules (York, a read-only resource watch; Lilith, gate tests; Edison, the planning stage) and a guide to local models by machine size. |

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.1 - 2026-11-07
+
+* Short card: `JARVIS Paraphrasing Rules.md` gains a `## Short card` section (under 700 characters). `scripts/Show-PersonaCard.ps1` prints the full Per-reply card with a chat's first message and the Short card with every later one, falling back to the full card on any doubt. To know a message is a follow-up it writes one empty marker per chat, `state/persona-card/<session_id>` (git-ignored); it writes nothing else. README, SECURITY.md, Project Startup.md, Tool Conventions.md and the startup script's line say so.
+* Stage charter: new `.claude/skills/jarvis-work-delegation/STAGE-CHARTER.md` (about 4 KB) holds what a stage needs from the delegation policy: its stage rules, the ethics block, file and check rules, reviewer duties and handoff notes. The 12 stage agents read it instead of the whole SKILL.md; the five caller agents are unchanged. The skill and Project Startup.md point to it.
+* Lesson cap: a lesson line is about 400 bytes at most, with longer detail in the new `Lesson Details.md` and a pointer from the line (AGENTS.md/CLAUDE.md Maintenance, both lesson-file headers). Three longer lessons in lessons.md were shortened this way; their full text is in Lesson Details.md. The startup script lists Lesson Details.md as an on-demand file.
+
 ## 0.5.0 - 2026-11-04
 
 * Third assistant: `GEMINI.md` (entry point for Gemini in Google Antigravity, nicknamed H.O.M.E.R.) and `HOMER Paraphrasing Rules.md` (chat-only persona). AGENTS.md, Project Startup.md, Tool Conventions.md and Shaka Ethics.md name the third assistant and its limits; no tool gate covers it in its own chat, and the files say so.
