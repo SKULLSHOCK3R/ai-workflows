@@ -1,0 +1,14 @@
+{
+  "dsx_port": 6969,
+  "controller": 0,
+  "xinput_aim": true,
+  "xinput_l2_threshold": 30,
+  "feels": {
+    "axe":        {"left": ["Resistance", 2, 3], "right": ["Bow", 1, 6, 4, 4]},
+    "axe_aim":    {"left": ["Resistance", 1, 5], "right": ["Bow", 1, 5, 6, 8]},
+    "thrown":     {"left": ["Resistance", 2, 2], "right": ["Resistance", 3, 1]},
+    "thrown_aim": {"left": ["Resistance", 1, 4], "right": ["Resistance", 3, 1]},
+    "blades":     {"left": ["Resistance", 2, 3], "right": ["Galloping", 1, 8, 3, 5, 12]},
+    "blades_aim": {"left": ["Resistance", 1, 4], "right": ["Galloping", 1, 8, 3, 5, 12]}
+  }
+}
