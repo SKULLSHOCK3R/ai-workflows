@@ -16,7 +16,7 @@ New-Item -ItemType Directory -Force -Path $stage | Out-Null
 if ($LASTEXITCODE -ne 0) { throw "compile failed ($LASTEXITCODE)" }
 & "$stage\GoWTriggers.exe" --selftest
 if ($LASTEXITCODE -ne 0) { throw "self-test failed" }
-foreach ($f in 'GoWTriggers.cs', 'README.txt', 'GoWTriggers.example.json') { Copy-Item -LiteralPath "$src\$f" -Destination "$stage\$f" }
+foreach ($f in 'GoWTriggers.cs', 'README.txt', 'GoWTriggers.example.json', 'LICENSE') { Copy-Item -LiteralPath "$src\$f" -Destination "$stage\$f" }
 
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem

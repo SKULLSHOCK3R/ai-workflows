@@ -1,6 +1,6 @@
 GoWTriggers 1.0.0
 DualSense adaptive triggers for God of War (2018, PC). Works with DSX ("DSX by Paliverse"); not made or endorsed
-by Paliverse.
+by Paliverse, Santa Monica Studio or Sony Interactive Entertainment. Free and open source (MIT License).
 
 WHAT IT DOES
 While God of War runs, GoWTriggers sets the DualSense's adaptive triggers to match what Kratos is doing:
@@ -24,8 +24,8 @@ player data by a byte pattern. Then, about 30 times a second, it reads a pointer
 (what is in Kratos's hands, whether he is aiming, which weapon) and the L2 trigger from the controller, and sends
 DSX the matching trigger effect over UDP to 127.0.0.1 (DSX's published mod interface). It listens for DSX's
 replies on that same local connection only to tell you when something is wrong (DSX not answering, no controller,
-and, on DSX builds that explain refusals, a DSX setting blocking mods). It opens the game with read rights only. It never writes to the game, injects
-nothing, changes no game file and sends nothing off your PC. The only file it reads is GoWTriggers.json in its
+and, on DSX builds that explain refusals, a DSX setting blocking mods). It opens the game with read rights
+only. It never writes to the game, injects nothing, changes no game file and sends nothing off your PC. The only file it reads is GoWTriggers.json in its
 own folder, if you create one.
 With --with-game (setup step 5a) it also starts the game exactly as Steam asked, with Steam's settings unchanged.
 The full source code is GoWTriggers.cs in this folder; you can build the exe yourself with the command at the top
